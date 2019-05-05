@@ -12,20 +12,20 @@ import org.springframework.stereotype.Repository;
 public class PostDao{
 
 	//글쓰기
-	static final String ADD_POST = "insert post(userid, name, content) values(?,?,?)";
+	static final String ADD_POST = "INSERT post(userId,name,content) VALUES(?,?,?)";
 	
 	//목록보기
-	static final String LIST_POSTS = "select postId,userId,name,context,sweet,cdate from post order by postId desc";
+	static final String LIST_POSTS = "SELECT postId,userId,name,content,sweet,cdate FROM post ORDER BY postId desc LIMIT ?,?";
 	
 	//좋아요
-	static final String LIKE_POST = "update post set sweet = sweet+1 when postId=?";
+	static final String LIKE_POST = "UPDATE post SET sweet = sweet+1 WHERE postId=?";
 	
 	//글 조회
-	static final String GET_POST = "select postId,userId,name,content,sweet,cdate from where postId=?";
+	static final String GET_POST = "SELECT postId, userId, name, content, sweet, cdate FROM post WHERE postId=?";
 	
 	
 	
-	//@Autowired
+	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
 	RowMapper<Post> postRowMapper = new BeanPropertyRowMapper<>(Post.class);
@@ -33,7 +33,7 @@ public class PostDao{
 	//@Override
 	public int addPost(Post post) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.update
+		return jdbcTemplate.update(ADD_POST, post.getUserId(), post.getName(), post.getContent());
 	}
 
 	//@Override

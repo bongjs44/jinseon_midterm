@@ -6,7 +6,7 @@ public class Post {
 	String userId;
 	String name;
 	String content;
-	int sweet;
+	String sweet;
 	String cdate;
 	
 	public String getPostId() {
@@ -33,10 +33,10 @@ public class Post {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getSweet() {
+	public String getSweet() {
 		return sweet;
 	}
-	public void setSweet(int sweet) {
+	public void setSweet(String sweet) {
 		this.sweet = sweet;
 	}
 	public String getCdate() {
